@@ -81,14 +81,42 @@
             right: 20px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             color: white;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 600;
-            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(245, 158, 11, 0.1) 100%);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin: 20px 0 30px;
+            text-align: center;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .welcome-text {
+            font-size: 2em;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .tagline {
@@ -510,6 +538,8 @@
         .footer-brand {
             font-weight: 700;
             color: var(--primary);
+            font-size: 1.2em;
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
         }
 
         .featured-section {
@@ -545,10 +575,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
 
         .video-container {
@@ -565,20 +596,21 @@
 
         .close-video {
             position: absolute;
-            top: -40px;
+            top: -50px;
             right: 0;
             background: var(--primary);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             font-size: 1.2em;
             transition: var(--transition);
+            z-index: 1001;
         }
 
         .close-video:hover {
@@ -620,6 +652,13 @@
             opacity: 1;
         }
 
+        .auto-play-notice {
+            color: var(--accent);
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
         @media (max-width: 768px) {
             .search-box {
                 flex-direction: column;
@@ -657,6 +696,10 @@
             .video-container {
                 width: 95%;
             }
+            
+            .welcome-text {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
@@ -664,12 +707,17 @@
     <div class="container">
         <header>
             <div class="creator-badge">
-                <i class="fas fa-code"></i> Created by INNOCENT TECH
+                <i class="fas fa-crown"></i> INNOCENT TECH
             </div>
             <div class="brand-container">
                 <i class="fas fa-film brand-logo"></i>
                 <div class="brand-text">CineSearch Pro</div>
             </div>
+            
+            <div class="welcome-banner">
+                <div class="welcome-text">WELCOME TO INNOCENT TECH SHOWS</div>
+            </div>
+            
             <p class="tagline">Discover, search, and explore thousands of movies with our powerful cinematic search engine</p>
             
             <div class="stats">
@@ -783,9 +831,12 @@
                 <button class="close-video" onclick="closeVideoPlayer()">
                     <i class="fas fa-times"></i>
                 </button>
-                <video id="movieVideo" controls>
+                <video id="movieVideo" controls autoplay>
                     Your browser does not support the video tag.
                 </video>
+            </div>
+            <div class="auto-play-notice">
+                <i class="fas fa-info-circle"></i> Movie will play automatically after trailer
             </div>
         </div>
 
@@ -814,7 +865,8 @@
                 genre: 'Sci-Fi',
                 runtime: '136 min',
                 cast: ['Keanu Reeves', 'Laurence Fishburne', 'Carrie-Anne Moss'],
-                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
+                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+                movie: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
             },
             {
                 id: 'example2',
@@ -826,7 +878,8 @@
                 genre: 'Sci-Fi',
                 runtime: '148 min',
                 cast: ['Leonardo DiCaprio', 'Joseph Gordon-Levitt', 'Ellen Page'],
-                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4'
+                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+                movie: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
             },
             {
                 id: 'example3',
@@ -838,7 +891,8 @@
                 genre: 'Action',
                 runtime: '152 min',
                 cast: ['Christian Bale', 'Heath Ledger', 'Aaron Eckhart'],
-                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4'
+                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+                movie: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'
             },
             {
                 id: 'example4',
@@ -850,7 +904,8 @@
                 genre: 'Crime',
                 runtime: '154 min',
                 cast: ['John Travolta', 'Uma Thurman', 'Samuel L. Jackson'],
-                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'
+                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+                movie: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4'
             },
             {
                 id: 'example5',
@@ -862,7 +917,8 @@
                 genre: 'Drama',
                 runtime: '142 min',
                 cast: ['Tim Robbins', 'Morgan Freeman', 'Bob Gunton'],
-                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4'
+                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
+                movie: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
             },
             {
                 id: 'example6',
@@ -874,7 +930,8 @@
                 genre: 'Action',
                 runtime: '181 min',
                 cast: ['Robert Downey Jr.', 'Chris Evans', 'Scarlett Johansson'],
-                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
+                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                movie: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
             }
         ];
 
@@ -942,14 +999,26 @@
             });
         }
 
-        // Play movie trailer
+        // Play movie with auto-play after trailer
         function playMovie(movieId) {
             const movie = exampleMovies.find(m => m.id === movieId) || currentMovies.find(m => m.id === movieId);
             
             if (movie && movie.trailer) {
+                let isTrailer = true;
+                
+                // Play trailer first
                 movieVideo.src = movie.trailer;
                 videoPlayer.style.display = 'flex';
                 movieVideo.play();
+                
+                // When trailer ends, play the full movie
+                movieVideo.onended = function() {
+                    if (isTrailer && movie.movie) {
+                        isTrailer = false;
+                        movieVideo.src = movie.movie;
+                        movieVideo.play();
+                    }
+                };
             } else {
                 showError('Trailer not available for this movie');
             }
@@ -988,7 +1057,7 @@
                         <p class="details-overview">${movie.overview}</p>
                         <div class="details-actions">
                             <button class="btn btn-primary" onclick="playMovie('${movie.id}')">
-                                <i class="fas fa-play"></i> Watch Trailer
+                                <i class="fas fa-play"></i> Watch Movie
                             </button>
                             <button class="btn btn-secondary" onclick="addToWatchlist('${movie.id}')">
                                 <i class="fas fa-plus"></i> Add to Watchlist
@@ -1008,12 +1077,16 @@
             movieDetails.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Main search function
+        // Enhanced search function
         async function searchMovies() {
             const query = searchInput.value.trim();
             
             if (!query) {
-                showError('Please enter a search term');
+                // If no query, show popular movies
+                currentMovies = [...exampleMovies];
+                displayMovies(currentMovies);
+                updateResultsCount(currentMovies.length);
+                showResults();
                 return;
             }
 
@@ -1044,7 +1117,21 @@
                 console.log('API Response:', data);
 
                 if (!data || data.length === 0) {
-                    showNoResults();
+                    // If no results from API, try to match with example movies
+                    const filteredMovies = exampleMovies.filter(movie => 
+                        movie.title.toLowerCase().includes(query.toLowerCase()) ||
+                        movie.genre.toLowerCase().includes(query.toLowerCase()) ||
+                        movie.cast.some(actor => actor.toLowerCase().includes(query.toLowerCase()))
+                    );
+                    
+                    if (filteredMovies.length > 0) {
+                        currentMovies = filteredMovies;
+                        displayMovies(currentMovies);
+                        updateResultsCount(currentMovies.length);
+                        showResults();
+                    } else {
+                        showNoResults();
+                    }
                     return;
                 }
 
@@ -1056,7 +1143,21 @@
                 
             } catch (error) {
                 console.error('Error:', error);
-                showError(`Search failed: ${error.message}`);
+                // If API fails, try to match with example movies
+                const filteredMovies = exampleMovies.filter(movie => 
+                    movie.title.toLowerCase().includes(query.toLowerCase()) ||
+                    movie.genre.toLowerCase().includes(query.toLowerCase()) ||
+                    movie.cast.some(actor => actor.toLowerCase().includes(query.toLowerCase()))
+                );
+                
+                if (filteredMovies.length > 0) {
+                    currentMovies = filteredMovies;
+                    displayMovies(currentMovies);
+                    updateResultsCount(currentMovies.length);
+                    showResults();
+                } else {
+                    showError(`Search failed: ${error.message}`);
+                }
             } finally {
                 loading.style.display = 'none';
                 searchBtn.disabled = false;
@@ -1138,7 +1239,7 @@
                         <p class="details-overview">${overview}</p>
                         <div class="details-actions">
                             <button class="btn btn-primary" onclick="playMovie('${movie.id}')">
-                                <i class="fas fa-play"></i> Watch Trailer
+                                <i class="fas fa-play"></i> Watch Movie
                             </button>
                             <button class="btn btn-secondary" onclick="addToWatchlist('${movie.id}')">
                                 <i class="fas fa-plus"></i> Add to Watchlist
