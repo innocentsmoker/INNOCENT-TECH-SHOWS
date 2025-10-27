@@ -13,14 +13,15 @@
         }
 
         :root {
-            --primary: #e50914;
-            --secondary: #141414;
-            --accent: #f5c518;
-            --light: #f8f9fa;
-            --dark: #141414;
-            --gray: #6c757d;
-            --success: #28a745;
-            --warning: #ffc107;
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --secondary: #064e3b;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --success: #22c55e;
+            --warning: #f59e0b;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             --radius: 12px;
             --transition: all 0.3s ease;
@@ -28,13 +29,13 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--secondary) 0%, #000 100%);
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
             min-height: 100vh;
             color: var(--light);
             line-height: 1.6;
             background-image: 
-                radial-gradient(circle at 20% 80%, rgba(229, 9, 20, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 80% 20%, rgba(245, 197, 24, 0.1) 0%, transparent 40%);
+                radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 40%);
         }
 
         .container {
@@ -61,7 +62,7 @@
             font-size: 2.8em;
             color: var(--primary);
             margin-right: 15px;
-            text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
         }
 
         .brand-text {
@@ -84,7 +85,7 @@
             border-radius: 20px;
             font-size: 0.9em;
             font-weight: 600;
-            box-shadow: 0 3px 10px rgba(229, 9, 20, 0.3);
+            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -95,7 +96,7 @@
             opacity: 0.9;
             max-width: 600px;
             margin: 0 auto 20px;
-            color: #ccc;
+            color: #cbd5e1;
         }
 
         .stats {
@@ -115,7 +116,7 @@
             font-weight: 700;
             color: var(--accent);
             display: block;
-            text-shadow: 0 0 10px rgba(245, 197, 24, 0.3);
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
         }
 
         .stat-label {
@@ -124,7 +125,7 @@
         }
 
         .search-container {
-            background: rgba(20, 20, 20, 0.8);
+            background: rgba(15, 23, 42, 0.8);
             border-radius: var(--radius);
             padding: 30px;
             box-shadow: var(--shadow);
@@ -147,23 +148,23 @@
             font-size: 16px;
             transition: var(--transition);
             outline: none;
-            background: rgba(30, 30, 30, 0.8);
+            background: rgba(30, 41, 59, 0.8);
             color: white;
         }
 
         input[type="text"]:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.2);
-            background: rgba(40, 40, 40, 0.9);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+            background: rgba(51, 65, 85, 0.9);
         }
 
         input[type="text"]::placeholder {
-            color: #999;
+            color: #94a3b8;
         }
 
         button {
             padding: 18px 30px;
-            background: linear-gradient(135deg, var(--primary) 0%, #c11119 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             border: none;
             border-radius: var(--radius);
@@ -175,12 +176,12 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
         }
 
         button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
         }
 
         button:active {
@@ -207,7 +208,7 @@
         .filter-group label {
             display: block;
             margin-bottom: 8px;
-            color: #ccc;
+            color: #cbd5e1;
             font-weight: 500;
         }
 
@@ -217,7 +218,7 @@
             border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius);
             font-size: 14px;
-            background: rgba(30, 30, 30, 0.8);
+            background: rgba(30, 41, 59, 0.8);
             color: white;
             cursor: pointer;
             transition: var(--transition);
@@ -225,7 +226,7 @@
 
         select:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.2);
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
         }
 
         .loading {
@@ -278,7 +279,7 @@
         }
 
         .movie-card {
-            background: rgba(30, 30, 30, 0.8);
+            background: rgba(30, 41, 59, 0.8);
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -290,7 +291,7 @@
         .movie-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            border-color: rgba(229, 9, 20, 0.3);
+            border-color: rgba(16, 185, 129, 0.3);
         }
 
         .movie-poster {
@@ -356,10 +357,10 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, #c11119 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             border: none;
-            box-shadow: 0 3px 10px rgba(229, 9, 20, 0.3);
+            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3);
         }
 
         .btn-secondary {
@@ -374,7 +375,7 @@
 
         .movie-details {
             display: none;
-            background: rgba(20, 20, 20, 0.9);
+            background: rgba(15, 23, 42, 0.9);
             border-radius: var(--radius);
             padding: 30px;
             box-shadow: var(--shadow);
@@ -425,7 +426,7 @@
         .details-overview {
             margin-bottom: 20px;
             line-height: 1.7;
-            color: #ccc;
+            color: #cbd5e1;
         }
 
         .details-actions {
@@ -447,7 +448,7 @@
         .no-results {
             text-align: center;
             padding: 50px;
-            background: rgba(30, 30, 30, 0.8);
+            background: rgba(30, 41, 59, 0.8);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             display: none;
@@ -468,7 +469,7 @@
         }
 
         .no-results p {
-            color: #999;
+            color: #94a3b8;
         }
 
         .pagination {
@@ -480,7 +481,7 @@
 
         .page-btn {
             padding: 10px 15px;
-            background: rgba(30, 30, 30, 0.8);
+            background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 6px;
             color: white;
@@ -489,19 +490,19 @@
         }
 
         .page-btn.active {
-            background: linear-gradient(135deg, var(--primary) 0%, #c11119 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             border-color: var(--primary);
         }
 
         .page-btn:hover:not(.active) {
-            background: rgba(50, 50, 50, 0.8);
+            background: rgba(51, 65, 85, 0.8);
         }
 
         footer {
             text-align: center;
             padding: 30px 0;
-            color: #999;
+            color: #94a3b8;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             margin-top: 30px;
         }
@@ -536,6 +537,89 @@
             border-radius: 2px;
         }
 
+        /* Video Player Styles */
+        .video-player {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container {
+            width: 80%;
+            max-width: 1000px;
+            position: relative;
+        }
+
+        .video-player video {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-video {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: var(--transition);
+        }
+
+        .close-video:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5em;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .play-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .movie-poster-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .movie-poster-container:hover .play-btn {
+            opacity: 1;
+        }
+
         @media (max-width: 768px) {
             .search-box {
                 flex-direction: column;
@@ -568,6 +652,10 @@
             .stats {
                 flex-direction: column;
                 gap: 15px;
+            }
+            
+            .video-container {
+                width: 95%;
             }
         }
     </style>
@@ -689,6 +777,18 @@
 
         <div class="movie-details" id="movieDetails"></div>
 
+        <!-- Video Player -->
+        <div class="video-player" id="videoPlayer">
+            <div class="video-container">
+                <button class="close-video" onclick="closeVideoPlayer()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <video id="movieVideo" controls>
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
         <footer>
             <p>CineSearch Pro &copy; 2023 | Powered by Plex API</p>
             <p>Created with ❤️ by <span class="footer-brand">INNOCENT TECH</span> for movie enthusiasts</p>
@@ -713,7 +813,8 @@
                 overview: 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.',
                 genre: 'Sci-Fi',
                 runtime: '136 min',
-                cast: ['Keanu Reeves', 'Laurence Fishburne', 'Carrie-Anne Moss']
+                cast: ['Keanu Reeves', 'Laurence Fishburne', 'Carrie-Anne Moss'],
+                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
             },
             {
                 id: 'example2',
@@ -724,7 +825,8 @@
                 overview: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
                 genre: 'Sci-Fi',
                 runtime: '148 min',
-                cast: ['Leonardo DiCaprio', 'Joseph Gordon-Levitt', 'Ellen Page']
+                cast: ['Leonardo DiCaprio', 'Joseph Gordon-Levitt', 'Ellen Page'],
+                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4'
             },
             {
                 id: 'example3',
@@ -735,7 +837,8 @@
                 overview: 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
                 genre: 'Action',
                 runtime: '152 min',
-                cast: ['Christian Bale', 'Heath Ledger', 'Aaron Eckhart']
+                cast: ['Christian Bale', 'Heath Ledger', 'Aaron Eckhart'],
+                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4'
             },
             {
                 id: 'example4',
@@ -746,7 +849,8 @@
                 overview: 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.',
                 genre: 'Crime',
                 runtime: '154 min',
-                cast: ['John Travolta', 'Uma Thurman', 'Samuel L. Jackson']
+                cast: ['John Travolta', 'Uma Thurman', 'Samuel L. Jackson'],
+                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'
             },
             {
                 id: 'example5',
@@ -757,7 +861,8 @@
                 overview: 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
                 genre: 'Drama',
                 runtime: '142 min',
-                cast: ['Tim Robbins', 'Morgan Freeman', 'Bob Gunton']
+                cast: ['Tim Robbins', 'Morgan Freeman', 'Bob Gunton'],
+                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4'
             },
             {
                 id: 'example6',
@@ -768,7 +873,8 @@
                 overview: 'After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos actions and restore balance to the universe.',
                 genre: 'Action',
                 runtime: '181 min',
-                cast: ['Robert Downey Jr.', 'Chris Evans', 'Scarlett Johansson']
+                cast: ['Robert Downey Jr.', 'Chris Evans', 'Scarlett Johansson'],
+                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
             }
         ];
 
@@ -785,6 +891,8 @@
         const movieDetails = document.getElementById('movieDetails');
         const pagination = document.getElementById('pagination');
         const sortOptions = document.getElementById('sortOptions');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const movieVideo = document.getElementById('movieVideo');
 
         // Event Listeners
         searchInput.addEventListener('keypress', function(e) {
@@ -806,12 +914,17 @@
                 movieCard.className = 'movie-card';
                 
                 movieCard.innerHTML = `
-                    <img src="${movie.poster}" alt="${movie.title}" class="movie-poster" onerror="this.src='https://via.placeholder.com/300x450/333333/ffffff?text=No+Poster'">
+                    <div class="movie-poster-container">
+                        <img src="${movie.poster}" alt="${movie.title}" class="movie-poster" onerror="this.src='https://via.placeholder.com/300x450/1e293b/ffffff?text=No+Poster'">
+                        <button class="play-btn" onclick="playMovie('${movie.id}')">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
                     <div class="movie-info">
                         <div class="movie-title">${movie.title}</div>
                         <div class="movie-year">${movie.year}</div>
                         <div class="movie-rating">
-                            <i class="fas fa-star" style="color: #f5c518;"></i>
+                            <i class="fas fa-star" style="color: #f59e0b;"></i>
                             <span class="rating-value">${movie.rating}</span>
                         </div>
                         <div class="movie-actions">
@@ -829,6 +942,26 @@
             });
         }
 
+        // Play movie trailer
+        function playMovie(movieId) {
+            const movie = exampleMovies.find(m => m.id === movieId) || currentMovies.find(m => m.id === movieId);
+            
+            if (movie && movie.trailer) {
+                movieVideo.src = movie.trailer;
+                videoPlayer.style.display = 'flex';
+                movieVideo.play();
+            } else {
+                showError('Trailer not available for this movie');
+            }
+        }
+
+        // Close video player
+        function closeVideoPlayer() {
+            videoPlayer.style.display = 'none';
+            movieVideo.pause();
+            movieVideo.src = '';
+        }
+
         // Show example movie details
         function showExampleMovieDetails(movieId) {
             const movie = exampleMovies.find(m => m.id === movieId);
@@ -840,7 +973,7 @@
             
             movieDetails.innerHTML = `
                 <div class="details-header">
-                    <img src="${movie.poster}" alt="${movie.title}" class="details-poster" onerror="this.src='https://via.placeholder.com/300x450/333333/ffffff?text=No+Poster'">
+                    <img src="${movie.poster}" alt="${movie.title}" class="details-poster" onerror="this.src='https://via.placeholder.com/300x450/1e293b/ffffff?text=No+Poster'">
                     <div class="details-info">
                         <h1 class="details-title">${movie.title}</h1>
                         <div class="details-meta">
@@ -849,12 +982,12 @@
                             <span><i class="fas fa-film"></i> ${movie.genre}</span>
                         </div>
                         <div class="details-rating">
-                            <i class="fas fa-star" style="color: #f5c518;"></i>
+                            <i class="fas fa-star" style="color: #f59e0b;"></i>
                             <span class="rating-value">${movie.rating}</span>
                         </div>
                         <p class="details-overview">${movie.overview}</p>
                         <div class="details-actions">
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary" onclick="playMovie('${movie.id}')">
                                 <i class="fas fa-play"></i> Watch Trailer
                             </button>
                             <button class="btn btn-secondary" onclick="addToWatchlist('${movie.id}')">
@@ -940,17 +1073,22 @@
                 movieCard.className = 'movie-card';
                 
                 // Use placeholder image if no poster available
-                const posterUrl = movie.poster || 'https://via.placeholder.com/300x450/333333/ffffff?text=No+Poster';
+                const posterUrl = movie.poster || 'https://via.placeholder.com/300x450/1e293b/ffffff?text=No+Poster';
                 const year = movie.year || 'Unknown';
                 const rating = movie.rating ? movie.rating.toFixed(1) : 'N/A';
                 
                 movieCard.innerHTML = `
-                    <img src="${posterUrl}" alt="${movie.title}" class="movie-poster" onerror="this.src='https://via.placeholder.com/300x450/333333/ffffff?text=No+Poster'">
+                    <div class="movie-poster-container">
+                        <img src="${posterUrl}" alt="${movie.title}" class="movie-poster" onerror="this.src='https://via.placeholder.com/300x450/1e293b/ffffff?text=No+Poster'">
+                        <button class="play-btn" onclick="playMovie('${movie.id}')">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
                     <div class="movie-info">
                         <div class="movie-title">${movie.title}</div>
                         <div class="movie-year">${year}</div>
                         <div class="movie-rating">
-                            <i class="fas fa-star" style="color: #f5c518;"></i>
+                            <i class="fas fa-star" style="color: #f59e0b;"></i>
                             <span class="rating-value">${rating}</span>
                         </div>
                         <div class="movie-actions">
@@ -977,14 +1115,14 @@
                 return;
             }
             
-            const posterUrl = movie.poster || 'https://via.placeholder.com/300x450/333333/ffffff?text=No+Poster';
+            const posterUrl = movie.poster || 'https://via.placeholder.com/300x450/1e293b/ffffff?text=No+Poster';
             const year = movie.year || 'Unknown';
             const rating = movie.rating ? movie.rating.toFixed(1) : 'N/A';
             const overview = movie.overview || 'No description available.';
             
             movieDetails.innerHTML = `
                 <div class="details-header">
-                    <img src="${posterUrl}" alt="${movie.title}" class="details-poster" onerror="this.src='https://via.placeholder.com/300x450/333333/ffffff?text=No+Poster'">
+                    <img src="${posterUrl}" alt="${movie.title}" class="details-poster" onerror="this.src='https://via.placeholder.com/300x450/1e293b/ffffff?text=No+Poster'">
                     <div class="details-info">
                         <h1 class="details-title">${movie.title}</h1>
                         <div class="details-meta">
@@ -993,13 +1131,13 @@
                             <span><i class="fas fa-film"></i> ${movie.genre || 'Unknown'}</span>
                         </div>
                         <div class="details-rating">
-                            <i class="fas fa-star" style="color: #f5c518;"></i>
+                            <i class="fas fa-star" style="color: #f59e0b;"></i>
                             <span class="rating-value">${rating}</span>
                             <span>${movie.votes ? `(${movie.votes} votes)` : ''}</span>
                         </div>
                         <p class="details-overview">${overview}</p>
                         <div class="details-actions">
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary" onclick="playMovie('${movie.id}')">
                                 <i class="fas fa-play"></i> Watch Trailer
                             </button>
                             <button class="btn btn-secondary" onclick="addToWatchlist('${movie.id}')">
@@ -1084,7 +1222,7 @@
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                background: ${type === 'success' ? 'rgba(40, 167, 69, 0.9)' : 'rgba(220, 53, 69, 0.9)'};
+                background: ${type === 'success' ? 'rgba(34, 197, 94, 0.9)' : 'rgba(220, 53, 69, 0.9)'};
                 color: white;
                 padding: 15px 20px;
                 border-radius: 8px;
