@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MovieSearch Pro | Find Any Movie</title>
+    <title>CineSearch Pro | INNOCENT TECH</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -13,24 +13,28 @@
         }
 
         :root {
-            --primary: #3498db;
-            --secondary: #2c3e50;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --gray: #7f8c8d;
-            --success: #2ecc71;
-            --warning: #f39c12;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --radius: 10px;
+            --primary: #e50914;
+            --secondary: #141414;
+            --accent: #f5c518;
+            --light: #f8f9fa;
+            --dark: #141414;
+            --gray: #6c757d;
+            --success: #28a745;
+            --warning: #ffc107;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --radius: 12px;
+            --transition: all 0.3s ease;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: linear-gradient(135deg, var(--secondary) 0%, #000 100%);
             min-height: 100vh;
-            color: var(--dark);
+            color: var(--light);
             line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(229, 9, 20, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(245, 197, 24, 0.1) 0%, transparent 40%);
         }
 
         .container {
@@ -42,40 +46,91 @@
         header {
             text-align: center;
             padding: 30px 0;
-            color: white;
+            position: relative;
         }
 
-        .brand {
+        .brand-container {
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 15px;
+            flex-wrap: wrap;
         }
 
         .brand-logo {
-            font-size: 2.5em;
-            color: white;
+            font-size: 2.8em;
+            color: var(--primary);
             margin-right: 15px;
+            text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
         }
 
         .brand-text {
-            font-size: 2.2em;
-            font-weight: 700;
+            font-size: 2.5em;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .creator-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(229, 9, 20, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .tagline {
             font-size: 1.2em;
             opacity: 0.9;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 20px;
+            color: #ccc;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            text-shadow: 0 0 10px rgba(245, 197, 24, 0.3);
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: var(--gray);
         }
 
         .search-container {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(20, 20, 20, 0.8);
             border-radius: var(--radius);
             padding: 30px;
             box-shadow: var(--shadow);
             margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .search-box {
@@ -86,38 +141,46 @@
 
         input[type="text"] {
             flex: 1;
-            padding: 15px 20px;
-            border: 2px solid #e0e0e0;
+            padding: 18px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius);
             font-size: 16px;
-            transition: all 0.3s;
+            transition: var(--transition);
             outline: none;
+            background: rgba(30, 30, 30, 0.8);
+            color: white;
         }
 
         input[type="text"]:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.2);
+            background: rgba(40, 40, 40, 0.9);
+        }
+
+        input[type="text"]::placeholder {
+            color: #999;
         }
 
         button {
-            padding: 15px 30px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 18px 30px;
+            background: linear-gradient(135deg, var(--primary) 0%, #c11119 100%);
             color: white;
             border: none;
             border-radius: var(--radius);
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
         }
 
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);
         }
 
         button:active {
@@ -141,14 +204,28 @@
             min-width: 200px;
         }
 
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ccc;
+            font-weight: 500;
+        }
+
         select {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius);
             font-size: 14px;
-            background: white;
+            background: rgba(30, 30, 30, 0.8);
+            color: white;
             cursor: pointer;
+            transition: var(--transition);
+        }
+
+        select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.2);
         }
 
         .loading {
@@ -158,7 +235,7 @@
         }
 
         .spinner {
-            border: 4px solid #f3f3f3;
+            border: 4px solid rgba(255, 255, 255, 0.1);
             border-top: 4px solid var(--primary);
             border-radius: 50%;
             width: 50px;
@@ -182,16 +259,16 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            color: white;
         }
 
         .results-count {
             font-size: 1.2em;
+            font-weight: 600;
         }
 
         .sort-options select {
             width: auto;
-            min-width: 150px;
+            min-width: 180px;
         }
 
         .movies-grid {
@@ -201,26 +278,35 @@
         }
 
         .movie-card {
-            background: white;
+            background: rgba(30, 30, 30, 0.8);
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
         }
 
         .movie-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(229, 9, 20, 0.3);
         }
 
         .movie-poster {
             width: 100%;
             height: 350px;
             object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .movie-card:hover .movie-poster {
+            transform: scale(1.05);
         }
 
         .movie-info {
-            padding: 15px;
+            padding: 20px;
+            position: relative;
         }
 
         .movie-title {
@@ -228,6 +314,7 @@
             font-weight: 600;
             margin-bottom: 8px;
             line-height: 1.3;
+            color: white;
         }
 
         .movie-year {
@@ -245,7 +332,7 @@
 
         .rating-value {
             font-weight: 600;
-            color: var(--warning);
+            color: var(--accent);
         }
 
         .movie-actions {
@@ -255,21 +342,24 @@
         }
 
         .btn {
-            padding: 8px 15px;
-            border-radius: 5px;
+            padding: 10px 15px;
+            border-radius: 6px;
             font-size: 0.9em;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             gap: 5px;
+            flex: 1;
+            justify-content: center;
         }
 
         .btn-primary {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, #c11119 100%);
             color: white;
             border: none;
+            box-shadow: 0 3px 10px rgba(229, 9, 20, 0.3);
         }
 
         .btn-secondary {
@@ -284,23 +374,25 @@
 
         .movie-details {
             display: none;
-            background: white;
+            background: rgba(20, 20, 20, 0.9);
             border-radius: var(--radius);
             padding: 30px;
             box-shadow: var(--shadow);
             margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .details-header {
             display: flex;
-            gap: 25px;
+            gap: 30px;
             margin-bottom: 25px;
         }
 
         .details-poster {
-            width: 250px;
+            width: 280px;
             border-radius: var(--radius);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
         }
 
         .details-info {
@@ -308,9 +400,11 @@
         }
 
         .details-title {
-            font-size: 2em;
+            font-size: 2.2em;
             font-weight: 700;
             margin-bottom: 10px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .details-meta {
@@ -318,18 +412,20 @@
             gap: 15px;
             margin-bottom: 15px;
             color: var(--gray);
+            flex-wrap: wrap;
         }
 
         .details-rating {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
             margin-bottom: 15px;
         }
 
         .details-overview {
             margin-bottom: 20px;
             line-height: 1.7;
+            color: #ccc;
         }
 
         .details-actions {
@@ -338,22 +434,41 @@
         }
 
         .error {
-            background: #fee;
-            color: var(--accent);
-            padding: 15px;
+            background: rgba(220, 53, 69, 0.2);
+            color: #ff6b7a;
+            padding: 15px 20px;
             border-radius: var(--radius);
             margin-bottom: 20px;
             display: none;
-            border-left: 4px solid var(--accent);
+            border-left: 4px solid #dc3545;
+            backdrop-filter: blur(10px);
         }
 
         .no-results {
             text-align: center;
-            padding: 40px;
-            background: white;
+            padding: 50px;
+            background: rgba(30, 30, 30, 0.8);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             display: none;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .no-results i {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: var(--gray);
+            opacity: 0.5;
+        }
+
+        .no-results h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .no-results p {
+            color: #999;
         }
 
         .pagination {
@@ -365,28 +480,35 @@
 
         .page-btn {
             padding: 10px 15px;
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: white;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: var(--transition);
         }
 
         .page-btn.active {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, #c11119 100%);
             color: white;
             border-color: var(--primary);
         }
 
         .page-btn:hover:not(.active) {
-            background: #f5f5f5;
+            background: rgba(50, 50, 50, 0.8);
         }
 
         footer {
             text-align: center;
             padding: 30px 0;
-            color: white;
-            opacity: 0.8;
+            color: #999;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 30px;
+        }
+
+        .footer-brand {
+            font-weight: 700;
+            color: var(--primary);
         }
 
         @media (max-width: 768px) {
@@ -411,30 +533,59 @@
             .filters {
                 flex-direction: column;
             }
+            
+            .creator-badge {
+                position: static;
+                margin: 0 auto 15px;
+                width: fit-content;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="brand">
-                <i class="fas fa-film brand-logo"></i>
-                <div class="brand-text">MovieSearch Pro</div>
+            <div class="creator-badge">
+                <i class="fas fa-code"></i> Created by INNOCENT TECH
             </div>
-            <p class="tagline">Discover, search, and explore thousands of movies with our powerful search engine</p>
+            <div class="brand-container">
+                <i class="fas fa-film brand-logo"></i>
+                <div class="brand-text">CineSearch Pro</div>
+            </div>
+            <p class="tagline">Discover, search, and explore thousands of movies with our powerful cinematic search engine</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">15K+</span>
+                    <span class="stat-label">Movies</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99%</span>
+                    <span class="stat-label">Success Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4.8</span>
+                    <span class="stat-label">User Rating</span>
+                </div>
+            </div>
         </header>
 
         <div class="search-container">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Search for movies by title, actor, or genre..." />
                 <button onclick="searchMovies()" id="searchBtn">
-                    <i class="fas fa-search"></i> Search
+                    <i class="fas fa-search"></i> Search Movies
                 </button>
             </div>
             
             <div class="filters">
                 <div class="filter-group">
-                    <label for="genreFilter">Genre</label>
+                    <label for="genreFilter"><i class="fas fa-tags"></i> Genre</label>
                     <select id="genreFilter">
                         <option value="">All Genres</option>
                         <option value="action">Action</option>
@@ -447,7 +598,7 @@
                 </div>
                 
                 <div class="filter-group">
-                    <label for="yearFilter">Year</label>
+                    <label for="yearFilter"><i class="far fa-calendar"></i> Year</label>
                     <select id="yearFilter">
                         <option value="">Any Year</option>
                         <option value="2023">2023</option>
@@ -463,7 +614,7 @@
                 </div>
                 
                 <div class="filter-group">
-                    <label for="ratingFilter">Minimum Rating</label>
+                    <label for="ratingFilter"><i class="fas fa-star"></i> Minimum Rating</label>
                     <select id="ratingFilter">
                         <option value="0">Any Rating</option>
                         <option value="7">7+</option>
@@ -478,7 +629,7 @@
 
         <div class="loading" id="loading">
             <div class="spinner"></div>
-            <p>Searching for movies...</p>
+            <p>Searching our cinematic database...</p>
         </div>
 
         <div class="results-container" id="resultsContainer">
@@ -500,7 +651,7 @@
         </div>
 
         <div class="no-results" id="noResults">
-            <i class="fas fa-film" style="font-size: 3em; margin-bottom: 15px; color: #ddd;"></i>
+            <i class="fas fa-film"></i>
             <h3>No movies found</h3>
             <p>Try adjusting your search terms or filters</p>
         </div>
@@ -508,8 +659,8 @@
         <div class="movie-details" id="movieDetails"></div>
 
         <footer>
-            <p>MovieSearch Pro &copy; 2023 | Powered by Plex API</p>
-            <p>Created with ❤️ for movie enthusiasts</p>
+            <p>CineSearch Pro &copy; 2023 | Powered by Plex API</p>
+            <p>Created with ❤️ by <span class="footer-brand">INNOCENT TECH</span> for movie enthusiasts</p>
         </footer>
     </div>
 
@@ -596,7 +747,7 @@
             } finally {
                 loading.style.display = 'none';
                 searchBtn.disabled = false;
-                searchBtn.innerHTML = '<i class="fas fa-search"></i> Search';
+                searchBtn.innerHTML = '<i class="fas fa-search"></i> Search Movies';
             }
         }
 
@@ -609,17 +760,17 @@
                 movieCard.className = 'movie-card';
                 
                 // Use placeholder image if no poster available
-                const posterUrl = movie.poster || 'https://via.placeholder.com/300x450/3498db/ffffff?text=No+Poster';
+                const posterUrl = movie.poster || 'https://via.placeholder.com/300x450/333333/ffffff?text=No+Poster';
                 const year = movie.year || 'Unknown';
                 const rating = movie.rating ? movie.rating.toFixed(1) : 'N/A';
                 
                 movieCard.innerHTML = `
-                    <img src="${posterUrl}" alt="${movie.title}" class="movie-poster" onerror="this.src='https://via.placeholder.com/300x450/3498db/ffffff?text=No+Poster'">
+                    <img src="${posterUrl}" alt="${movie.title}" class="movie-poster" onerror="this.src='https://via.placeholder.com/300x450/333333/ffffff?text=No+Poster'">
                     <div class="movie-info">
                         <div class="movie-title">${movie.title}</div>
                         <div class="movie-year">${year}</div>
                         <div class="movie-rating">
-                            <i class="fas fa-star" style="color: #f39c12;"></i>
+                            <i class="fas fa-star" style="color: #f5c518;"></i>
                             <span class="rating-value">${rating}</span>
                         </div>
                         <div class="movie-actions">
@@ -646,14 +797,14 @@
                 return;
             }
             
-            const posterUrl = movie.poster || 'https://via.placeholder.com/300x450/3498db/ffffff?text=No+Poster';
+            const posterUrl = movie.poster || 'https://via.placeholder.com/300x450/333333/ffffff?text=No+Poster';
             const year = movie.year || 'Unknown';
             const rating = movie.rating ? movie.rating.toFixed(1) : 'N/A';
             const overview = movie.overview || 'No description available.';
             
             movieDetails.innerHTML = `
                 <div class="details-header">
-                    <img src="${posterUrl}" alt="${movie.title}" class="details-poster" onerror="this.src='https://via.placeholder.com/300x450/3498db/ffffff?text=No+Poster'">
+                    <img src="${posterUrl}" alt="${movie.title}" class="details-poster" onerror="this.src='https://via.placeholder.com/300x450/333333/ffffff?text=No+Poster'">
                     <div class="details-info">
                         <h1 class="details-title">${movie.title}</h1>
                         <div class="details-meta">
@@ -662,7 +813,7 @@
                             <span><i class="fas fa-film"></i> ${movie.genre || 'Unknown'}</span>
                         </div>
                         <div class="details-rating">
-                            <i class="fas fa-star" style="color: #f39c12;"></i>
+                            <i class="fas fa-star" style="color: #f5c518;"></i>
                             <span class="rating-value">${rating}</span>
                             <span>${movie.votes ? `(${movie.votes} votes)` : ''}</span>
                         </div>
@@ -751,12 +902,13 @@
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                background: ${type === 'success' ? '#2ecc71' : '#e74c3c'};
+                background: ${type === 'success' ? 'rgba(40, 167, 69, 0.9)' : 'rgba(220, 53, 69, 0.9)'};
                 color: white;
                 padding: 15px 20px;
-                border-radius: 5px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
                 z-index: 1000;
+                backdrop-filter: blur(10px);
                 animation: slideIn 0.3s ease;
             `;
             
