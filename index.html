@@ -399,6 +399,22 @@
             color: var(--accent);
         }
 
+        .movie-genres {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .genre-tag {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--primary);
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
         .movie-actions {
             display: flex;
             gap: 10px;
@@ -813,6 +829,10 @@
                         <option value="horror">Horror</option>
                         <option value="sci-fi">Sci-Fi</option>
                         <option value="thriller">Thriller</option>
+                        <option value="romance">Romance</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="animation">Animation</option>
+                        <option value="documentary">Documentary</option>
                     </select>
                 </div>
                 
@@ -900,7 +920,7 @@
 
         <footer>
             <p>CineSearch Pro &copy; 2023 | Powered by Plex API</p>
-            <p>Created with ❤️ by <span class="footer-brand">INNOCENT TECH</span> for movie enthusiasts</p>
+            <p>Created with ❤️ by <span class="footer-brand">INNOCENT SMOKER TECH</span> for movie enthusiasts</p>
         </footer>
     </div>
 
@@ -920,7 +940,7 @@
                 rating: 8.7,
                 poster: 'https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg',
                 overview: 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.',
-                genre: 'Sci-Fi',
+                genres: ['Sci-Fi', 'Action'],
                 runtime: '136 min',
                 cast: ['Keanu Reeves', 'Laurence Fishburne', 'Carrie-Anne Moss'],
                 director: 'Lana Wachowski, Lilly Wachowski',
@@ -939,7 +959,7 @@
                 rating: 8.8,
                 poster: 'https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg',
                 overview: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
-                genre: 'Sci-Fi',
+                genres: ['Sci-Fi', 'Thriller'],
                 runtime: '148 min',
                 cast: ['Leonardo DiCaprio', 'Joseph Gordon-Levitt', 'Ellen Page'],
                 director: 'Christopher Nolan',
@@ -958,7 +978,7 @@
                 rating: 9.0,
                 poster: 'https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg',
                 overview: 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
-                genre: 'Action',
+                genres: ['Action', 'Crime', 'Drama'],
                 runtime: '152 min',
                 cast: ['Christian Bale', 'Heath Ledger', 'Aaron Eckhart'],
                 director: 'Christopher Nolan',
@@ -977,7 +997,7 @@
                 rating: 8.9,
                 poster: 'https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg',
                 overview: 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.',
-                genre: 'Crime',
+                genres: ['Crime', 'Drama'],
                 runtime: '154 min',
                 cast: ['John Travolta', 'Uma Thurman', 'Samuel L. Jackson'],
                 director: 'Quentin Tarantino',
@@ -996,7 +1016,7 @@
                 rating: 9.3,
                 poster: 'https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg',
                 overview: 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
-                genre: 'Drama',
+                genres: ['Drama'],
                 runtime: '142 min',
                 cast: ['Tim Robbins', 'Morgan Freeman', 'Bob Gunton'],
                 director: 'Frank Darabont',
@@ -1014,4 +1034,376 @@
                 year: '2019',
                 rating: 8.4,
                 poster: 'https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg',
-                overview: 'After the devastating events of Avengers: Infinity War, the universe is in ruins. With the
+                overview: 'After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos\' actions and restore balance to the universe.',
+                genres: ['Action', 'Adventure', 'Sci-Fi'],
+                runtime: '181 min',
+                cast: ['Robert Downey Jr.', 'Chris Evans', 'Scarlett Johansson'],
+                director: 'Anthony Russo, Joe Russo',
+                budget: '$356 million',
+                revenue: '$2.798 billion',
+                awards: 'Nominated for 1 Oscar',
+                language: 'English',
+                country: 'USA',
+                trailer: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+                movie: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4'
+            }
+        ];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            displayFeaturedMovies();
+            setupEventListeners();
+        });
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Search on enter key
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchMovies();
+                }
+            });
+
+            // Sort options
+            document.getElementById('sortOptions').addEventListener('change', function() {
+                if (currentMovies.length > 0) {
+                    sortMovies();
+                    displayMovies(currentMovies);
+                }
+            });
+
+            // Filter changes
+            document.getElementById('genreFilter').addEventListener('change', applyFilters);
+            document.getElementById('yearFilter').addEventListener('change', applyFilters);
+            document.getElementById('ratingFilter').addEventListener('change', applyFilters);
+        }
+
+        // Display featured movies
+        function displayFeaturedMovies() {
+            const featuredGrid = document.getElementById('featuredMoviesGrid');
+            featuredGrid.innerHTML = '';
+            
+            exampleMovies.forEach(movie => {
+                const movieCard = createMovieCard(movie);
+                featuredGrid.appendChild(movieCard);
+            });
+        }
+
+        // Create movie card element
+        function createMovieCard(movie) {
+            const movieCard = document.createElement('div');
+            movieCard.className = 'movie-card';
+            movieCard.dataset.id = movie.id;
+            
+            const genresHTML = movie.genres ? movie.genres.map(genre => 
+                `<span class="genre-tag">${genre}</span>`
+            ).join('') : '';
+            
+            movieCard.innerHTML = `
+                <div class="movie-poster-container">
+                    <img src="${movie.poster}" alt="${movie.title}" class="movie-poster" onerror="this.src='https://via.placeholder.com/300x450/1e293b/94a3b8?text=No+Image'">
+                    <button class="play-btn" onclick="playTrailer('${movie.trailer}', '${movie.movie}')">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+                <div class="movie-info">
+                    <h3 class="movie-title">${movie.title}</h3>
+                    <div class="movie-year">${movie.year}</div>
+                    <div class="movie-rating">
+                        <i class="fas fa-star" style="color: var(--accent);"></i>
+                        <span class="rating-value">${movie.rating}</span>
+                    </div>
+                    <div class="movie-genres">
+                        ${genresHTML}
+                    </div>
+                    <div class="movie-actions">
+                        <button class="btn btn-primary" onclick="showMovieDetails('${movie.id}')">
+                            <i class="fas fa-info-circle"></i> Details
+                        </button>
+                        <button class="btn btn-secondary" onclick="playTrailer('${movie.trailer}', '${movie.movie}')">
+                            <i class="fas fa-play"></i> Trailer
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            return movieCard;
+        }
+
+        // Search movies function
+        function searchMovies() {
+            const query = document.getElementById('searchInput').value.trim();
+            
+            if (!query) {
+                showError('Please enter a search term');
+                return;
+            }
+            
+            currentQuery = query;
+            currentPage = 1;
+            
+            showLoading(true);
+            hideError();
+            hideNoResults();
+            
+            // In a real implementation, this would be an API call
+            // For now, we'll simulate searching through our example movies
+            setTimeout(() => {
+                const filteredMovies = exampleMovies.filter(movie => 
+                    movie.title.toLowerCase().includes(query.toLowerCase()) ||
+                    (movie.cast && movie.cast.some(actor => 
+                        actor.toLowerCase().includes(query.toLowerCase())
+                    )) ||
+                    (movie.genres && movie.genres.some(genre => 
+                        genre.toLowerCase().includes(query.toLowerCase())
+                    ))
+                );
+                
+                currentMovies = filteredMovies;
+                
+                showLoading(false);
+                
+                if (filteredMovies.length > 0) {
+                    displayMovies(filteredMovies);
+                    showResultsContainer();
+                } else {
+                    hideResultsContainer();
+                    showNoResults();
+                }
+            }, 1000);
+        }
+
+        // Display movies in grid
+        function displayMovies(movies) {
+            const moviesGrid = document.getElementById('moviesGrid');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            moviesGrid.innerHTML = '';
+            resultsCount.textContent = `Found ${movies.length} movies`;
+            
+            movies.forEach(movie => {
+                const movieCard = createMovieCard(movie);
+                moviesGrid.appendChild(movieCard);
+            });
+        }
+
+        // Apply filters to current search results
+        function applyFilters() {
+            if (currentMovies.length === 0) return;
+            
+            const genreFilter = document.getElementById('genreFilter').value;
+            const yearFilter = document.getElementById('yearFilter').value;
+            const ratingFilter = parseFloat(document.getElementById('ratingFilter').value);
+            
+            let filteredMovies = [...currentMovies];
+            
+            // Apply genre filter
+            if (genreFilter) {
+                filteredMovies = filteredMovies.filter(movie => 
+                    movie.genres && movie.genres.some(genre => 
+                        genre.toLowerCase().includes(genreFilter.toLowerCase())
+                    )
+                );
+            }
+            
+            // Apply year filter
+            if (yearFilter) {
+                if (yearFilter.includes('-')) {
+                    const [startYear, endYear] = yearFilter.split('-').map(Number);
+                    filteredMovies = filteredMovies.filter(movie => {
+                        const movieYear = parseInt(movie.year);
+                        return movieYear >= startYear && movieYear <= endYear;
+                    });
+                } else {
+                    const targetYear = parseInt(yearFilter);
+                    filteredMovies = filteredMovies.filter(movie => 
+                        parseInt(movie.year) === targetYear
+                    );
+                }
+            }
+            
+            // Apply rating filter
+            if (ratingFilter > 0) {
+                filteredMovies = filteredMovies.filter(movie => 
+                    movie.rating >= ratingFilter
+                );
+            }
+            
+            // Sort and display
+            sortMovies(filteredMovies);
+            displayMovies(filteredMovies);
+            
+            if (filteredMovies.length === 0) {
+                showNoResults();
+            } else {
+                hideNoResults();
+            }
+        }
+
+        // Sort movies based on selected option
+        function sortMovies(movies = currentMovies) {
+            const sortOption = document.getElementById('sortOptions').value;
+            
+            switch (sortOption) {
+                case 'year':
+                    movies.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+                    break;
+                case 'rating':
+                    movies.sort((a, b) => b.rating - a.rating);
+                    break;
+                case 'title':
+                    movies.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'relevance':
+                default:
+                    // For relevance, we'll keep the original order
+                    break;
+            }
+            
+            return movies;
+        }
+
+        // Show movie details
+        function showMovieDetails(movieId) {
+            const movie = exampleMovies.find(m => m.id === movieId);
+            if (!movie) return;
+            
+            const detailsContainer = document.getElementById('movieDetails');
+            
+            const genresHTML = movie.genres ? movie.genres.map(genre => 
+                `<span class="genre-tag">${genre}</span>`
+            ).join('') : '';
+            
+            detailsContainer.innerHTML = `
+                <div class="details-header">
+                    <img src="${movie.poster}" alt="${movie.title}" class="details-poster" onerror="this.src='https://via.placeholder.com/300x450/1e293b/94a3b8?text=No+Image'">
+                    <div class="details-info">
+                        <h1 class="details-title">${movie.title}</h1>
+                        <div class="details-meta">
+                            <span>${movie.year}</span>
+                            <span>•</span>
+                            <span>${movie.runtime}</span>
+                            <span>•</span>
+                            <div class="movie-genres">${genresHTML}</div>
+                        </div>
+                        <div class="details-rating">
+                            <i class="fas fa-star" style="color: var(--accent);"></i>
+                            <span>${movie.rating}/10</span>
+                        </div>
+                        <p class="details-overview">${movie.overview}</p>
+                        <div class="details-actions">
+                            <button class="btn btn-primary" onclick="playTrailer('${movie.trailer}', '${movie.movie}')">
+                                <i class="fas fa-play"></i> Watch Trailer
+                            </button>
+                            <button class="btn btn-secondary" onclick="playMovie('${movie.movie}')">
+                                <i class="fas fa-film"></i> Watch Movie
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <i class="fas fa-user"></i>
+                        <span><strong>Director:</strong> ${movie.director}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-users"></i>
+                        <span><strong>Cast:</strong> ${movie.cast.join(', ')}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-language"></i>
+                        <span><strong>Language:</strong> ${movie.language}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-globe"></i>
+                        <span><strong>Country:</strong> ${movie.country}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-trophy"></i>
+                        <span><strong>Awards:</strong> ${movie.awards}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span><strong>Budget:</strong> ${movie.budget}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span><strong>Revenue:</strong> ${movie.revenue}</span>
+                    </div>
+                </div>
+            `;
+            
+            detailsContainer.style.display = 'block';
+            
+            // Scroll to details
+            detailsContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Play trailer
+        function playTrailer(trailerUrl, movieUrl) {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const movieVideo = document.getElementById('movieVideo');
+            
+            movieVideo.src = trailerUrl;
+            videoPlayer.style.display = 'flex';
+            
+            // When trailer ends, play the movie
+            movieVideo.onended = function() {
+                movieVideo.src = movieUrl;
+                movieVideo.play();
+            };
+        }
+
+        // Play movie directly
+        function playMovie(movieUrl) {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const movieVideo = document.getElementById('movieVideo');
+            
+            movieVideo.src = movieUrl;
+            videoPlayer.style.display = 'flex';
+            movieVideo.play();
+        }
+
+        // Close video player
+        function closeVideoPlayer() {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const movieVideo = document.getElementById('movieVideo');
+            
+            movieVideo.pause();
+            movieVideo.src = '';
+            videoPlayer.style.display = 'none';
+        }
+
+        // Utility functions
+        function showLoading(show) {
+            document.getElementById('loading').style.display = show ? 'block' : 'none';
+        }
+
+        function showError(message) {
+            const errorElement = document.getElementById('error');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        function hideError() {
+            document.getElementById('error').style.display = 'none';
+        }
+
+        function showNoResults() {
+            document.getElementById('noResults').style.display = 'block';
+        }
+
+        function hideNoResults() {
+            document.getElementById('noResults').style.display = 'none';
+        }
+
+        function showResultsContainer() {
+            document.getElementById('resultsContainer').style.display = 'block';
+        }
+
+        function hideResultsContainer() {
+            document.getElementById('resultsContainer').style.display = 'none';
+        }
+    </script>
+</body>
+                    </html>
