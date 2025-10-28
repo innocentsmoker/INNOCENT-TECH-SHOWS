@@ -48,6 +48,9 @@
             --primary: #10b981;
             --primary-dark: #059669;
             --secondary: #064e3b;
+            --gold: #D4AF37;
+            --gold-light: #FFD700;
+            --gold-dark: #B8860B;
             --accent: #f59e0b;
             --light: #f8fafc;
             --dark: #0f172a;
@@ -57,17 +60,106 @@
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             --radius: 12px;
             --transition: all 0.3s ease;
+            --gold-green-gradient: linear-gradient(135deg, #D4AF37 0%, #10b981 50%, #B8860B 100%);
+            --gold-green-light: linear-gradient(135deg, #D4AF37 0%, #10b981 100%);
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
+            background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%);
             min-height: 100vh;
             color: var(--light);
             line-height: 1.6;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 40%);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Elements */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 15s infinite linear;
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            font-size: 40px;
+            color: var(--gold);
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 70%;
+            left: 10%;
+            font-size: 35px;
+            color: var(--primary);
+            animation-delay: 2s;
+            animation-duration: 20s;
+        }
+
+        .floating-icon:nth-child(3) {
+            top: 20%;
+            right: 10%;
+            font-size: 45px;
+            color: var(--gold);
+            animation-delay: 4s;
+            animation-duration: 18s;
+        }
+
+        .floating-icon:nth-child(4) {
+            top: 80%;
+            right: 5%;
+            font-size: 30px;
+            color: var(--primary);
+            animation-delay: 6s;
+            animation-duration: 22s;
+        }
+
+        .floating-icon:nth-child(5) {
+            top: 50%;
+            left: 15%;
+            font-size: 38px;
+            color: var(--gold);
+            animation-delay: 8s;
+            animation-duration: 17s;
+        }
+
+        .floating-icon:nth-child(6) {
+            top: 40%;
+            right: 20%;
+            font-size: 42px;
+            color: var(--primary);
+            animation-delay: 10s;
+            animation-duration: 19s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(90deg);
+            }
+            50% {
+                transform: translateY(0) rotate(180deg);
+            }
+            75% {
+                transform: translateY(20px) rotate(270deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
         }
 
         .container {
@@ -92,15 +184,15 @@
 
         .brand-logo {
             font-size: 2.8em;
-            color: var(--primary);
+            color: var(--gold);
             margin-right: 15px;
-            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
 
         .brand-text {
             font-size: 2.5em;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            background: var(--gold-green-light);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -111,7 +203,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            background: var(--gold-green-gradient);
             color: white;
             padding: 12px 24px;
             border-radius: 30px;
@@ -133,7 +225,7 @@
         }
 
         .welcome-banner {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(245, 158, 11, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(212, 175, 55, 0.2) 100%);
             padding: 25px;
             border-radius: var(--radius);
             margin: 25px 0 35px;
@@ -146,7 +238,7 @@
         .welcome-text {
             font-size: 2.2em;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            background: var(--gold-green-light);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -177,9 +269,9 @@
         .stat-number {
             font-size: 2.2em;
             font-weight: 700;
-            color: var(--accent);
+            color: var(--gold);
             display: block;
-            text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
         }
 
         .stat-label {
@@ -227,7 +319,7 @@
 
         button {
             padding: 18px 30px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: var(--gold-green-gradient);
             color: white;
             border: none;
             border-radius: var(--radius);
@@ -300,7 +392,7 @@
 
         .spinner {
             border: 4px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid var(--primary);
+            border-top: 4px solid var(--gold);
             border-radius: 50%;
             width: 50px;
             height: 50px;
@@ -396,7 +488,7 @@
 
         .rating-value {
             font-weight: 600;
-            color: var(--accent);
+            color: var(--gold);
         }
 
         .movie-genres {
@@ -436,7 +528,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: var(--gold-green-gradient);
             color: white;
             border: none;
             box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3);
@@ -569,7 +661,7 @@
         }
 
         .page-btn.active {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: var(--gold-green-gradient);
             color: white;
             border-color: var(--primary);
         }
@@ -588,9 +680,9 @@
 
         .footer-brand {
             font-weight: 700;
-            color: var(--primary);
+            color: var(--gold);
             font-size: 1.2em;
-            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
 
         .featured-section {
@@ -614,7 +706,7 @@
             transform: translateX(-50%);
             width: 100px;
             height: 3px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            background: var(--gold-green-gradient);
             border-radius: 2px;
         }
 
@@ -670,7 +762,7 @@
         }
 
         .play-btn {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: var(--gold-green-gradient);
             color: white;
             border: none;
             border-radius: 50%;
@@ -704,7 +796,7 @@
         }
 
         .auto-play-notice {
-            color: var(--accent);
+            color: var(--gold);
             margin-top: 15px;
             text-align: center;
             font-weight: 600;
@@ -731,6 +823,41 @@
 
         .meta-item i {
             color: var(--primary);
+        }
+
+        /* Team Explore Acknowledgment */
+        .team-explore-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-explore-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: var(--gold-green-light);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .team-explore-text {
+            font-size: 1.2em;
+            color: #cbd5e1;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .team-explore-highlight {
+            color: var(--gold);
+            font-weight: 600;
         }
 
         @media (max-width: 768px) {
@@ -774,10 +901,28 @@
             .welcome-text {
                 font-size: 1.5em;
             }
+            
+            .team-explore-title {
+                font-size: 1.8em;
+            }
+            
+            .team-explore-text {
+                font-size: 1.1em;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Animated Background Elements -->
+    <div class="bg-animation">
+        <i class="fas fa-film floating-icon"></i>
+        <i class="fas fa-star floating-icon"></i>
+        <i class="fas fa-play floating-icon"></i>
+        <i class="fas fa-video floating-icon"></i>
+        <i class="fas fa-ticket-alt floating-icon"></i>
+        <i class="fas fa-award floating-icon"></i>
+    </div>
+    
     <div class="container">
         <header>
             <div class="creator-badge">
@@ -895,6 +1040,21 @@
             <div class="pagination" id="pagination"></div>
         </div>
 
+        <!-- Team Explore Acknowledgment Section -->
+        <div class="team-explore-section">
+            <h2 class="team-explore-title">Special Thanks to Team Explore</h2>
+            <p class="team-explore-text">
+                We extend our heartfelt gratitude to <span class="team-explore-highlight">Team Explore</span> for their invaluable 
+                collaboration and support in bringing this cinematic experience to life. 
+                Their dedication to innovation and exploration has been instrumental in creating a platform 
+                that connects movie enthusiasts with their favorite films.
+            </p>
+            <p class="team-explore-text" style="margin-top: 15px;">
+                Together, we're exploring new frontiers in digital entertainment and bringing the magic 
+                of cinema to audiences worldwide. Thank you for being an essential part of this journey!
+            </p>
+        </div>
+
         <div class="no-results" id="noResults">
             <i class="fas fa-film"></i>
             <h3>No movies found</h3>
@@ -919,8 +1079,8 @@
         </div>
 
         <footer>
-            <p>CineSearch Pro &copy; 2023 | Powered by Plex API</p>
-            <p>Created with ❤️ by <span class="footer-brand">INNOCENT SMOKER TECH</span> for movie enthusiasts</p>
+            <p>CineSearch Pro &copy; 2025 | Powered by Plex API</p>
+            <p>Created with ❤️ by <span class="footer-brand">INNOCENT TECH</span> for movie enthusiasts</p>
         </footer>
     </div>
 
@@ -1110,7 +1270,7 @@
                     <h3 class="movie-title">${movie.title}</h3>
                     <div class="movie-year">${movie.year}</div>
                     <div class="movie-rating">
-                        <i class="fas fa-star" style="color: var(--accent);"></i>
+                        <i class="fas fa-star" style="color: var(--gold);"></i>
                         <span class="rating-value">${movie.rating}</span>
                     </div>
                     <div class="movie-genres">
@@ -1287,7 +1447,7 @@
                             <div class="movie-genres">${genresHTML}</div>
                         </div>
                         <div class="details-rating">
-                            <i class="fas fa-star" style="color: var(--accent);"></i>
+                            <i class="fas fa-star" style="color: var(--gold);"></i>
                             <span>${movie.rating}/10</span>
                         </div>
                         <p class="details-overview">${movie.overview}</p>
@@ -1406,4 +1566,4 @@
         }
     </script>
 </body>
-                    </html>
+</html>
